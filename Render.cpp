@@ -65,8 +65,16 @@ class Render {
             return output;
         }
 
-        void render_module() {
-
+        /*
+        * Takes Balls and num_balls
+        * returns a string with the output
+        */
+        void render_full_module(Ball[] balls, int num_balls) {
+            create_board();
+            for(int i = 0; i < num_balls, i++) {
+                //place_ball(balls[i])
+            }
+            return print_board()
         }
 
     private:
