@@ -30,9 +30,9 @@ class Render {
             this->board = new_board;
         }
 
-        int[] adjust_coordinates_to_fit(double[] coordinates) {
-            int[coordinates.size()] my;
-            for(int i = 0; i < coordinates.size(); i++) {
+        int * adjust_coordinates_to_fit(double *coordinates) {
+            static int my[2];
+            for(int i = 0; i < 2; i++) {
                 my[i] = coordinates[i] / 1;
             }
             return my;
@@ -56,12 +56,17 @@ class Render {
             string output = "";
             for(int h = 0; h < this->terminal_height; h++) {
                 for (int w = 0; w < this->terminal_width; w++) {
-                    std::cout << this->board.at(h).at(w);
-                    output += std::to_string(this->board.at(h).at(w));
+                    int value = this->board.at(h).at(w);
+                    // Output a space for all 0 areas
+                    if (value == 0) {
+                        output += " ";
+                    }
+                    else {
+                         output += std::to_string(value);
+                    }
                 }
                 output += '\n';
             }
-            std::cout << output;
             return output;
         }
 
@@ -69,12 +74,12 @@ class Render {
         * Takes Balls and num_balls
         * returns a string with the output
         */
-        void render_full_module(Ball[] balls, int num_balls) {
+        string render_full_module(int num_balls) {//Ball[] balls, ) {
             create_board();
-            for(int i = 0; i < num_balls, i++) {
+            for(int i = 0; i < num_balls; i++) {
                 //place_ball(balls[i])
             }
-            return print_board()
+            return print_board();
         }
 
     private:
